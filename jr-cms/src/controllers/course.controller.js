@@ -26,7 +26,10 @@ const logger = createLogger(__filename);
 // curring function
 // higher order function
 // const catchAll = (routeHandler) => {
-//   return async (req, res, next) => {
+//   return async (req, res, next) => { 
+//  //这里return包一层的原因有两个:
+//      // 1. 为了避免 router.get('/v1/users', catchAll(addUser)) 直接执行 catchALl, 因为router期待接收到一个middleware函数ref来进入chain, 而非一个执行过的结果
+//      // 2. 为了能给这个传入的function ref能够接收req, res, next
 //     try {
 //       await routeHandler(req, res, next);
 //     } catch(e) {
